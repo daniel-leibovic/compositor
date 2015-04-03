@@ -1,5 +1,6 @@
 # compositor
 PSET 4, CPSC 223, Yale University
+My solution implemented linked lists to represent each 'row' of a final table that represented the characters stored at each 2D coordinate. Using a 2D array would fail large test cases, since some inputs may represent images at very far coordinates (eg. (10^6, 10^6)). A 2D array would allocate far too much memory than is necessary. A simple linked list representation wouldn't work well either: storing a character at (10^6, 10^6) would still take up 10^6 nodes to represent the 'space' characters preceding the target character. So my linked list implementation represents all characters given as inputs except 'space' characters, such that even if an input placed a '%' character at (10^6, 10^6), my linked list would skip allocating the spaces preceding the '%' and would allocate a single node of a linked list {data: '%', next: NULL, x: 10^6}. Then, when all inputs are received and the whole composite picture must be printed, my printPic function (via the missingSpaces calculation) prints out the necessary characters with the properly deduced implicit space characters between them, given that each character has an 'x' coordinate value.  
 
 ## 7.4.1 An ASCII art compositor
 
